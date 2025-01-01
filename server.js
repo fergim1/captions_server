@@ -9,6 +9,11 @@ const port = process.env.PORT || 5000;
 app.use(cors()); // Habilita CORS para todas las rutas
 app.use(express.json());
 
+app.use(cors({
+  origin: process.env.DOMAIN,
+  AccessControlAllowOrigin: process.env.DOMAIN,
+}))
+
 var getSubtitles = require('youtube-captions-scraper').getSubtitles;
 
 
