@@ -11,10 +11,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@googleapis/youtube": "^20.0.0",
+    "axios": "^1.7.9",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "googleapis": "^144.0.0",
+    "protobufjs": "^7.4.0",
     "youtube-caption-scraper": "^1.0.0",
     "youtube-captions-scraper": "^2.0.3"
   }
