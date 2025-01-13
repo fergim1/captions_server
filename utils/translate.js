@@ -1,9 +1,6 @@
 
 const { Translate } = require('@google-cloud/translate').v2;
 
-// Verifica que la variable de entorno esté configurada correctamente
-console.log('Ruta de credenciales:', process.env.GOOGLE_APPLICATION_CREDENTIALS);
-
 // Configura el cliente
 const translate = new Translate();
 
