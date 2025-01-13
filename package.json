@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/translate": "^8.5.0",
     "@googleapis/youtube": "^20.0.0",
     "axios": "^1.7.9",
     "cors": "^2.8.5",
