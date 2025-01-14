@@ -82,8 +82,8 @@ app.get('/api/transcript', async (req, res) => {
   try {
     const data = await subtitlesAndText(videoId);
     const { subtitles, totalText } = data
-    const textTranslated = await translateText(totalText, "es")
-
+    // const textTranslated = await translateText(totalText, "es")
+    const textTranslated = "Descomentar linea 85 si quieres traducir todo el texto con google translate"
     res.json({ subtitles, totalText, textTranslated });
 
   } catch (error) {
