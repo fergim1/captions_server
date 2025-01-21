@@ -1,6 +1,7 @@
 const { Buffer } = require('buffer');
 const protobuf = require('protobufjs');
 const axios = require('axios');
+const { convertToMinutes } = require('./convertToMinutes');
 
 
 
@@ -61,6 +62,7 @@ async function getSubtitles ({ videoId, trackKind, language }) {
 
   // Map subtitles to JSON format with timestamps
   let totalTextOfVideo = "";
+  let videoDurationMs = 0
   const subtitlesWithTimestamp = initialSegments.map((segment) => {
     const line =
       segment.transcriptSectionHeaderRenderer ||
@@ -72,6 +74,13 @@ async function getSubtitles ({ videoId, trackKind, language }) {
 
     totalTextOfVideo += text + " ";
 
+    // Calcular duración total basada en el mayor valor de `endMs`
+    const durationOfOneSubtitle = Number(((parseInt(endMs) - parseInt(startMs)) / 1000).toFixed(2))
+    videoDurationMs = videoDurationMs + durationOfOneSubtitle
+
+
+
+
     return {
       start: (parseInt(startMs) / 1000).toFixed(2), // Start time in seconds
       dur: ((parseInt(endMs) - parseInt(startMs)) / 1000).toFixed(2), // Duration in seconds
@@ -79,12 +88,15 @@ async function getSubtitles ({ videoId, trackKind, language }) {
     };
   });
 
+  // Convertir la duración total a minutos
+  const videoDuration = convertToMinutes(videoDurationMs)
+
 
 
   // TODO: devolver tambien "totalText" que es el texto completo de todos los subtitulos
   // console.log({ totalTextOfVideo })
   // console.log({ subtitlesWithTimestamp })
-  return { subtitlesWithTimestamp, totalTextOfVideo };
+  return { subtitlesWithTimestamp, totalTextOfVideo, videoDuration };
 }
 
 module.exports = { getSubtitles };

@@ -31,6 +31,7 @@ async function subtitlesAndText (videoId) {
     const trackKinds = ['standard', 'asr'];
     let subtitles = '';
     let = totalText = "";
+    let durationOfVideo = 0
 
     for (const trackKind of trackKinds) {
       try {
@@ -42,9 +43,10 @@ async function subtitlesAndText (videoId) {
           trackKind
         });
 
-        const { subtitlesWithTimestamp, totalTextOfVideo } = subtitlesAndTotalText
+        const { subtitlesWithTimestamp, totalTextOfVideo, videoDuration } = subtitlesAndTotalText
         subtitles = subtitlesWithTimestamp
         totalText = totalTextOfVideo
+        durationOfVideo = videoDuration
 
         if (subtitles) {
           console.log(`Subtitles retrieved with trackKind: ${trackKind}`);
@@ -60,7 +62,7 @@ async function subtitlesAndText (videoId) {
     }
 
 
-    return { subtitles, totalText };
+    return { subtitles, totalText, durationOfVideo };
   } catch (err) {
     console.error('Error:', err.message);
     throw err;
@@ -81,10 +83,10 @@ app.get('/api/transcript', async (req, res) => {
 
   try {
     const data = await subtitlesAndText(videoId);
-    const { subtitles, totalText } = data
+    const { subtitles, totalText, durationOfVideo } = data
     // const textTranslated = await translateText(totalText, "es")
     const textTranslated = "Descomentar linea 85 si quieres traducir todo el texto con google translate"
-    res.json({ subtitles, totalText, textTranslated });
+    res.json({ subtitles, totalText, textTranslated, durationOfVideo });
 
   } catch (error) {
     console.log(error)
