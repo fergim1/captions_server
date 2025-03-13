@@ -49,6 +49,7 @@ async function subtitlesAndText (videoId) {
         durationOfVideo = videoDuration
 
         if (subtitles) {
+          console.log(totalText)
           console.log(`Subtitles retrieved with trackKind: ${trackKind}`);
           break; // Exit loop if subtitles are found
         }
