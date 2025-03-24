@@ -1,0 +1,45 @@
+{
+  "level": "A2",
+  "name": "Elementary",
+  "description": "Usuario con conocimiento básico. Puede comprender frases y expresiones frecuentes relacionadas con áreas de relevancia inmediata.",
+  "objectives": [
+    "Comprender oraciones y expresiones relacionadas con información personal y familiar.",
+    "Comunicarse en tareas sencillas y cotidianas que requieren un intercambio de información simple.",
+    "Describir en términos sencillos aspectos de su pasado, entorno y necesidades inmediatas."
+  ],
+  "grammar": [
+    "Adjetivos calificativos y de cantidad",
+    "Adjetivos demostrativos y posesivos",
+    "Comparativos y superlativos",
+    "Preposiciones de lugar y tiempo",
+    "Pasado simple (verbos regulares e irregulares)",
+    "Pasado continuo",
+    "Presente perfecto (introducción)",
+    "Futuro con 'going to' y 'will'",
+    "Would like / I'd like (expresar deseos)",
+    "Much / Many / A lot of / Some / Any",
+    "Too / Enough",
+    "Conjunciones básicas: and, but, because, so",
+    "Wh- questions",
+    "Adverbios de frecuencia",
+    "Modales básicos: can, must, have to (uso introductorio)"
+  ],
+  "vocabulary": [
+    "Transporte",
+    "Vocabulario en el restaurante",
+    "Emociones y sentimientos",
+    "Actividades de tiempo libre",
+    "Vocabulario en el supermercado",
+    "Partes de la casa y objetos",
+    "Vocabulario de viajes y vacaciones"
+  ],
+  "functions": [
+    "Hablar sobre experiencias pasadas",
+    "Expresar gustos, opiniones y deseos",
+    "Hacer descripciones más detalladas",
+    "Dar instrucciones simples",
+    "Contar anécdotas simples",
+    "Expresar cantidad y frecuencia",
+    "Hacer sugerencias y ofrecer ayuda"
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "A1": {
+    "name": "Beginner",
+    "description": "Usuario principiante. Comienza a familiarizarse con el idioma. Puede comprender y usar expresiones cotidianas y frases básicas para satisfacer necesidades concretas.",
+    "objectives": [
+      "Comprender y usar expresiones cotidianas de uso muy frecuente.",
+      "Presentarse y responder preguntas personales simples.",
+      "Interactuar de forma sencilla si la otra persona habla despacio y con claridad."
+    ],
+    "grammar": [
+      "El abecedario",
+      "Pronombres personales",
+      "El verbo to be (afirmativo, negativo, interrogativo)",
+      "Artículos definidos e indefinidos",
+      "Plurales regulares",
+      "Presente simple (afirmaciones, negaciones y preguntas)",
+      "Presente continuo",
+      "Have got / Has got (posesión)",
+      "There is / There are",
+      "Demostrativos: this, that, these, those",
+      "Can (habilidad básica y permiso)",
+      "Preposiciones básicas de lugar",
+      "Adjetivos posesivos",
+      "Frases con 'like', 'love', 'hate'",
+      "This is / That is",
+      "Imperativos (Give me, Sit down)",
+      "Estructuras básicas con 'Do you have…?' y 'Is there…?'"
+    ],
+    "vocabulary": [
+      "Colores",
+      "Números cardinales y ordinales",
+      "Días de la semana, meses, estaciones",
+      "Partes del cuerpo",
+      "Familia",
+      "Profesiones",
+      "Partes de la casa",
+      "Objetos del hogar",
+      "Comidas y bebidas",
+      "Ropa",
+      "Formas y figuras geométricas",
+      "Salud y síntomas básicos"
+    ],
+    "functions": [
+      "Saludar y despedirse",
+      "Presentarse y presentar a otros",
+      "Describir personas y objetos",
+      "Decir la hora y la fecha",
+      "Hablar sobre rutinas diarias",
+      "Hacer y responder preguntas sencillas",
+      "Dar y recibir instrucciones simples",
+      "Hablar sobre gustos y preferencias",
+      "Ubicar objetos en el espacio"
+    ]
+  },
+  "A2": {
+    "name": "Elementary",
+    "description": "Usuario con conocimiento básico. Puede comprender frases y expresiones frecuentes relacionadas con áreas de relevancia inmediata.",
+    "objectives": [
+      "Comprender oraciones y expresiones relacionadas con información personal y familiar.",
+      "Comunicarse en tareas sencillas y cotidianas que requieren un intercambio de información simple.",
+      "Describir en términos sencillos aspectos de su pasado, entorno y necesidades inmediatas."
+    ],
+    "grammar": [
+      "Adjetivos calificativos y de cantidad",
+      "Adjetivos demostrativos y posesivos",
+      "Comparativos y superlativos",
+      "Preposiciones de lugar y tiempo",
+      "Pasado simple (verbos regulares e irregulares)",
+      "Pasado continuo",
+      "Presente perfecto (introducción)",
+      "Futuro con 'going to' y 'will'",
+      "Would like / I'd like (expresar deseos)",
+      "Much / Many / A lot of / Some / Any",
+      "Too / Enough",
+      "Conjunciones básicas: and, but, because, so",
+      "Wh- questions",
+      "Adverbios de frecuencia",
+      "Modales básicos: can, must, have to (uso introductorio)"
+    ],
+    "vocabulary": [
+      "Transporte",
+      "Vocabulario en el restaurante",
+      "Emociones y sentimientos",
+      "Actividades de tiempo libre",
+      "Vocabulario en el supermercado",
+      "Partes de la casa y objetos",
+      "Vocabulario de viajes y vacaciones"
+    ],
+    "functions": [
+      "Hablar sobre experiencias pasadas",
+      "Expresar gustos, opiniones y deseos",
+      "Hacer descripciones más detalladas",
+      "Dar instrucciones simples",
+      "Contar anécdotas simples",
+      "Expresar cantidad y frecuencia",
+      "Hacer sugerencias y ofrecer ayuda"
+    ]
+  },
+  "B1": {
+    "name": "Intermediate",
+    "description": "Usuario independiente. Puede comprender los puntos principales de textos claros, y desenvolverse en situaciones habituales en viajes.",
+    "objectives": [
+      "Comprender las ideas principales de temas cotidianos en textos claros.",
+      "Producir textos sencillos y coherentes.",
+      "Describir experiencias, deseos, y justificar opiniones o planes."
+    ],
+    "grammar": [
+      "Futuro simple y continuo",
+      "Presente perfecto simple y continuo",
+      "Condicional tipo 0, 1 y 2",
+      "Used to (acciones habituales en el pasado)",
+      "Verb patterns (gerundios vs. infinitivos)",
+      "Reported speech (pasado)",
+      "Comparativos y superlativos complejos",
+      "Relative clauses",
+      "Pronombres reflexivos y posesivos",
+      "Artículos definidos, indefinidos y cero artículo",
+      "Adverbios de modo, tiempo y lugar",
+      "Conectores: although, however, therefore, so, because",
+      "So / Such + adjective/noun"
+    ],
+    "vocabulary": [
+      "Medios de comunicación",
+      "Medio ambiente",
+      "Educación",
+      "Trabajo y empleos",
+      "Vida en la ciudad y el campo",
+      "Salud y bienestar"
+    ],
+    "functions": [
+      "Dar consejos y hacer sugerencias",
+      "Expresar condiciones reales e irreales",
+      "Relatar historias y experiencias",
+      "Describir eventos en diferentes tiempos",
+      "Justificar opiniones",
+      "Participar en conversaciones espontáneas"
+    ]
+  },
+  "B2": {
+    "name": "Upper Intermediate",
+    "description": "Usuario independiente avanzado. Puede interactuar con hablantes nativos con un grado suficiente de fluidez y naturalidad.",
+    "objectives": [
+      "Entender las ideas principales de textos complejos.",
+      "Comunicarse con fluidez y espontaneidad.",
+      "Producir textos claros y detallados sobre una amplia gama de temas."
+    ],
+    "grammar": [
+      "Condicional tipo 3 y condicionales mixtos",
+      "Modales de deducción: must, might, can’t",
+      "Inversion for emphasis: Not only did he…",
+      "Cleft sentences: What I need is…, It was John who…",
+      "Discurso indirecto complejo",
+      "Wish / If only",
+      "Question tags",
+      "Estructuras con 'had better', 'would rather', 'supposed to', 'bound to'",
+      "Voz pasiva (todos los tiempos)",
+      "Reported speech avanzado",
+      "Adjetivos terminados en -ed / -ing",
+      "Verbos transitivos e intransitivos",
+      "Phrasal verbs frecuentes",
+      "Conectores avanzados: despite, in spite of, moreover, furthermore"
+    ],
+    "vocabulary": [
+      "Expresiones idiomáticas comunes",
+      "Phrasal verbs intermedios",
+      "Términos abstractos (libertad, justicia, éxito)",
+      "Vocabulario en discusiones y debates",
+      "Lenguaje para argumentar y contrastar ideas"
+    ],
+    "functions": [
+      "Participar en debates o conversaciones más técnicas",
+      "Matizar opiniones",
+      "Usar expresiones idiomáticas con naturalidad",
+      "Comparar y contrastar ideas",
+      "Narrar en diferentes tiempos",
+      "Expresar hipótesis o condiciones irreales"
+    ]
+  },
+  "C1": {
+    "name": "Advanced",
+    "description": "Usuario competente. Puede utilizar el idioma de manera flexible y efectiva para fines sociales, académicos y profesionales.",
+    "objectives": [
+      "Comprender una amplia variedad de textos largos y exigentes.",
+      "Expresarse con fluidez y espontaneidad sin buscar palabras de forma evidente.",
+      "Usar el idioma de forma flexible y eficaz para fines sociales, académicos y profesionales.",
+      "Producir textos claros, bien estructurados y detallados sobre temas complejos."
+    ],
+    "grammar": [
+      "Narrative tenses (past perfect, past perfect continuous)",
+      "Estructuras modales perfectas (might have, should have, can't have)",
+      "Discurso indirecto avanzado (uso en contexto profesional y académico)",
+      "Condicionales mixtos y expresiones con 'If it weren’t for...', 'Had I known...'",
+      "Inversión para énfasis (Rarely do we..., Not only did she...)",
+      "Cleft sentences (What I need is..., It was John who...)",
+      "Participios como adjetivos o cláusulas (The man injured in the accident...)",
+      "Nominalización para estilo académico (The government’s decision to...)",
+      "Discourse markers complejos (Nevertheless, On the other hand, In any case)",
+      "Estilo formal vs informal (registro, tono y adaptaciones según el contexto)",
+      "Verbos modales avanzados para sugerencias, deducciones y especulaciones",
+      "Uso preciso de tiempos verbales en narraciones y argumentación"
+    ],
+    "vocabulary": [
+      "Lenguaje académico y técnico (ensayos, informes, presentaciones)",
+      "Expresiones idiomáticas y colocaciones complejas (take for granted, break new ground)",
+      "Lenguaje para argumentar y debatir (on the contrary, in light of)",
+      "Lenguaje metafórico y simbólico",
+      "Vocabulario abstracto (ética, política, cultura, filosofía)",
+      "Frases para conectar ideas con fluidez en textos largos"
+    ],
+    "functions": [
+      "Participar activamente en debates y discusiones extensas",
+      "Defender puntos de vista complejos con claridad",
+      "Evaluar ideas y contraargumentos con precisión",
+      "Adaptar el lenguaje según el contexto social o profesional",
+      "Escribir textos persuasivos y estructurados",
+      "Expresarse con matices y riqueza léxica"
+    ]
+  },
+  "C2": {
+    "name": "Proficient / Mastery",
+    "description": "Usuario de nivel maestría. Puede comprender con facilidad prácticamente todo lo que oye o lee. Se expresa espontáneamente con gran fluidez y precisión, diferenciando matices sutiles de significado.",
+    "objectives": [
+      "Comprender prácticamente todo lo que se lee o escucha con facilidad.",
+      "Resumir información de diferentes fuentes, tanto habladas como escritas, y reconstruir argumentos y hechos en una presentación coherente.",
+      "Expresarse espontáneamente, con gran fluidez y precisión, incluso en contextos más complejos o sutiles.",
+      "Utilizar el idioma con precisión y eficacia en entornos académicos, profesionales y sociales avanzados."
+    ],
+    "grammar": [
+      "Control total de todos los tiempos verbales",
+      "Uso flexible y preciso de modales en pasado y presente",
+      "Manipulación consciente del discurso indirecto para matices",
+      "Uso extenso de la nominalización, la pasiva, la inversión y otras estructuras formales",
+      "Distinción sutil entre registro formal e informal",
+      "Cleft sentences y estructuras enfáticas con fluidez",
+      "Elipsis gramaticales para estilo literario o conversacional",
+      "Subjuntivo formal (It’s essential that he be present)",
+      "Manipulación avanzada del estilo indirecto con matices de duda, ironía, certeza",
+      "Análisis sintáctico y semántico del discurso complejo",
+      "Estructuras avanzadas con ‘whatever’, ‘whichever’, ‘no matter how’, etc.",
+      "Uso estilístico de estructuras gramaticales (e.g. fronting, postponement)"
+    ],
+    "vocabulary": [
+      "Lenguaje literario, técnico y retórico",
+      "Modismos avanzados y expresiones culturales",
+      "Registro sofisticado adaptado a diferentes ámbitos (académico, jurídico, artístico)",
+      "Vocabulario abstracto en temas complejos como filosofía, política, ciencia",
+      "Lenguaje diplomático, persuasivo y matizado",
+      "Sinónimos y antónimos sutiles según el tono y la intención",
+      "Uso consciente de la ambigüedad o el doble sentido cuando es adecuado"
+    ],
+    "functions": [
+      "Discutir con precisión sobre temas abstractos o culturales de forma profunda",
+      "Adaptar el discurso con base en el interlocutor, el entorno y el objetivo comunicativo",
+      "Escribir ensayos, artículos, informes con estructura, tono y estilo específicos",
+      "Interpretar y crear metáforas, ironías, alusiones culturales",
+      "Reformular ideas con fluidez para evitar repeticiones y enriquecer el discurso",
+      "Realizar tareas lingüísticas con eficacia nativa o cuasi-nativa"
+    ]
+  }
+}

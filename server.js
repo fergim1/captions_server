@@ -8,6 +8,7 @@ const axios = require('axios');
 const { getSubtitles } = require("./utils/subtitles")
 const { translateText } = require('./utils/translate');
 const { oxford } = require('./utils/oxford');
+const loadAgent = require('./utils/agentLoader');
 
 
 
@@ -49,7 +50,7 @@ async function subtitlesAndText (videoId) {
         durationOfVideo = videoDuration
 
         if (subtitles) {
-          console.log(totalText)
+          // console.log(totalText)
           console.log(`Subtitles retrieved with trackKind: ${trackKind}`);
           break; // Exit loop if subtitles are found
         }
@@ -87,22 +88,111 @@ app.get('/api/transcript', async (req, res) => {
     const { subtitles, totalText, durationOfVideo } = data
     // const textTranslated = await translateText(totalText, "es")
     const textTranslated = "Descomentar linea 85 si quieres traducir todo el texto con google translate"
-    res.json({ subtitles, totalText, textTranslated, durationOfVideo });
+
+    ///////////////////Deepseek
+    const level = "B1"
+
+    // 1. Cargar agente del nivel requerido
+    const agent = loadAgent(level);
+
+    // 2. Reemplazar variables en el template
+
+    const prompt_template = `
+  Eres un profesor de inglés especializado en nivel {{level}}.
+  A partir del contenido de estos subtitulos: {{totalText}}, debes generar:
+  1) Resumen del contenido, minimo 3000 caracteres (summary)
+  2) 10 puntos principales (main_points)
+  3) 20 preguntas múltiple choice (4 opciones, 1 correcta y las otras opciones incorrectas tienen que ser creibles)
+  4) 20 preguntas verdadero/falso (true_false).
+  Tanto el resumen, los 10 puntos principales, preguntas multiple choice y las verdadero/falso deben tener
+  el vocabulario adecuado para que el alumno pueda entenderlas segun su nivel de ingles ({{level}}).
+  Ademas, para las preguntas se debe indicar el texto donde hace referencia a la respuesta correcta.
+
+  **Reglas estrictas para generar el resumen, los puntos principales y las preguntas segun el nivel del alumno:**
+  - Descripcion del alumno: {{description}}
+  - Objectivos: {{objectives}}
+  - Gramática permitida: {{grammar}}
+  - Vocabulario: {{vocabulary}}
+  - Functions: {{functions}}
+
+  **Formato requerido de la respuesta (JSON):**
+  {
+    "status": "ok",
+    "summary": "resumen del texto analizado",
+    "main_points": ["primero punto", "segundo punto", "tercer punto", "cuarto punto", "quinto punto", "sexto punto", "septimo punto", "octavo punto", "noveno punto", "decimo punto"],
+    "exercises":
+    {
+      "multiple_choice": [
+        {
+          "question": "What is the ultimate goal for Neo's learning process?",
+          "options": [
+              "To become a chef",
+              "To replace all human jobs",
+              "To achieve true intelligence",
+              "To win a robot competition"
+          ],
+          "correct_answer": 2,
+          "text_reference": "for robots to become truly intelligent, they must learn from diverse data in real-world settings"
+      }
+      ],
+      "true_false": [
+        {
+          "statement": "Neo can cook perfectly without human help.",
+          "correct_answer": false,
+          "text_reference": "it might be a few more years before robots can handle full cooking duties..."
+        }
+      ]
+    }
+  }
+  **Reglas estrictas para la respuesta en formato JSON **
+  - summary contendra un mínimo de 3000 caracteres y debe contener todas las partes importantes del texto a analizar.
+  - en summary cada parrafo tiene que terminarcon un salto de linea.
+  - main_points contentra los 10 puntos mas importantes del video.
+  - multiple_choice debe contener 20 elementos (1 para cada pregunta).
+  - options debe contener la opcion correcta y las otras opciones deben ser creibles, no debe ser facil de adivinar cual es la respuesta correcta, por lo tanto las opciones incorrectas deben estar relacionadas con el contenido, con el texto, no tienen que ser facil de descartar.
+  - options debe contener elementos que serán string aproximadamente del mismo tamaño.
+  - correct_answer no debe ser siempre el mismo, por lo tanto la respuesta correcta que se encuentra dentro de options, no debe estar siempre en el mismo indice.
+  - true_false debe contener 20 elementos.
+  - Todo debe estar en un vocabulario que sea capas de entender el alumno, acorde a su nivel {{level}} de ingles
+ `
+    const prompt = prompt_template
+      .replace('{{level}}', level)
+      .replace('{{totalText}}', totalText)
+      .replace('{{description}}', agent.description)
+      .replace('{{objectives}}', agent.objectives)
+      .replace('{{grammar}}', agent.grammar.join(', '))
+      .replace('{{vocabulary}}', agent.vocabulary.join(', '))
+      .replace('{{functions}}', agent.functions.join(', '));
+
+
+    // 3. Llamar a DeepSeek
+    const responseDeepseek = await axios.post(
+      process.env.DEEPSEEK_URL_API,
+      {
+        model: "deepseek-chat",
+        messages: [{ role: "user", content: prompt }],
+        response_format: { type: "json_object" }
+      },
+      { headers: { Authorization: `Bearer ${process.env.DEEPSEEK_API_KEY}` } }
+    );
+
+    console.log("Deepseek")
+    // 4. Validar y devolver respuesta
+    const deepseekResponse = JSON.parse(responseDeepseek.data.choices[0].message.content);
+    const totalTokens = JSON.parse(responseDeepseek.data.usage.total_tokens);
+    console.log({ totalTokens })
+    console.log({ deepseekResponse })
+    //////////////// Fin de Deepseek
+
+
+
+    res.json({ subtitles, totalText, textTranslated, durationOfVideo, deepseekResponse });
 
   } catch (error) {
     console.log(error)
     res.status(500).json({ error: error.message });
   }
 });
-
-
-// const subtitles = async () => {
-//   const sub = await   subtitlesAndText("K7hU_z9X4Kk")
-//   console.log(sub)
-//   return sub
-// };
-
-// subtitles()
 
 
 

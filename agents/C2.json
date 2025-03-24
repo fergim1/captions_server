@@ -1,0 +1,42 @@
+{
+  "level": "C2",
+  "name": "Proficient / Mastery",
+  "description": "Usuario de nivel maestría. Puede comprender con facilidad prácticamente todo lo que oye o lee. Se expresa espontáneamente con gran fluidez y precisión, diferenciando matices sutiles de significado.",
+  "objectives": [
+    "Comprender prácticamente todo lo que se lee o escucha con facilidad.",
+    "Resumir información de diferentes fuentes, tanto habladas como escritas, y reconstruir argumentos y hechos en una presentación coherente.",
+    "Expresarse espontáneamente, con gran fluidez y precisión, incluso en contextos más complejos o sutiles.",
+    "Utilizar el idioma con precisión y eficacia en entornos académicos, profesionales y sociales avanzados."
+  ],
+  "grammar": [
+    "Control total de todos los tiempos verbales",
+    "Uso flexible y preciso de modales en pasado y presente",
+    "Manipulación consciente del discurso indirecto para matices",
+    "Uso extenso de la nominalización, la pasiva, la inversión y otras estructuras formales",
+    "Distinción sutil entre registro formal e informal",
+    "Cleft sentences y estructuras enfáticas con fluidez",
+    "Elipsis gramaticales para estilo literario o conversacional",
+    "Subjuntivo formal (It’s essential that he be present)",
+    "Manipulación avanzada del estilo indirecto con matices de duda, ironía, certeza",
+    "Análisis sintáctico y semántico del discurso complejo",
+    "Estructuras avanzadas con ‘whatever’, ‘whichever’, ‘no matter how’, etc.",
+    "Uso estilístico de estructuras gramaticales (e.g. fronting, postponement)"
+  ],
+  "vocabulary": [
+    "Lenguaje literario, técnico y retórico",
+    "Modismos avanzados y expresiones culturales",
+    "Registro sofisticado adaptado a diferentes ámbitos (académico, jurídico, artístico)",
+    "Vocabulario abstracto en temas complejos como filosofía, política, ciencia",
+    "Lenguaje diplomático, persuasivo y matizado",
+    "Sinónimos y antónimos sutiles según el tono y la intención",
+    "Uso consciente de la ambigüedad o el doble sentido cuando es adecuado"
+  ],
+  "functions": [
+    "Discutir con precisión sobre temas abstractos o culturales de forma profunda",
+    "Adaptar el discurso con base en el interlocutor, el entorno y el objetivo comunicativo",
+    "Escribir ensayos, artículos, informes con estructura, tono y estilo específicos",
+    "Interpretar y crear metáforas, ironías, alusiones culturales",
+    "Reformular ideas con fluidez para evitar repeticiones y enriquecer el discurso",
+    "Realizar tareas lingüísticas con eficacia nativa o cuasi-nativa"
+  ]
+}

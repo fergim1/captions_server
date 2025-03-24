@@ -1,0 +1,54 @@
+{
+  "level": "A1",
+  "name": "Beginner",
+  "description": "Usuario principiante. Comienza a familiarizarse con el idioma. Puede comprender y usar expresiones cotidianas y frases básicas para satisfacer necesidades concretas.",
+  "objectives": [
+    "Comprender y usar expresiones cotidianas de uso muy frecuente.",
+    "Presentarse y responder preguntas personales simples.",
+    "Interactuar de forma sencilla si la otra persona habla despacio y con claridad."
+  ],
+  "grammar": [
+    "El abecedario",
+    "Pronombres personales",
+    "El verbo to be (afirmativo, negativo, interrogativo)",
+    "Artículos definidos e indefinidos",
+    "Plurales regulares",
+    "Presente simple (afirmaciones, negaciones y preguntas)",
+    "Presente continuo",
+    "Have got / Has got (posesión)",
+    "There is / There are",
+    "Demostrativos: this, that, these, those",
+    "Can (habilidad básica y permiso)",
+    "Preposiciones básicas de lugar",
+    "Adjetivos posesivos",
+    "Frases con 'like', 'love', 'hate'",
+    "This is / That is",
+    "Imperativos (Give me, Sit down)",
+    "Estructuras básicas con 'Do you have…?' y 'Is there…?'"
+  ],
+  "vocabulary": [
+    "Colores",
+    "Números cardinales y ordinales",
+    "Días de la semana, meses, estaciones",
+    "Partes del cuerpo",
+    "Familia",
+    "Profesiones",
+    "Partes de la casa",
+    "Objetos del hogar",
+    "Comidas y bebidas",
+    "Ropa",
+    "Formas y figuras geométricas",
+    "Salud y síntomas básicos"
+  ],
+  "functions": [
+    "Saludar y despedirse",
+    "Presentarse y presentar a otros",
+    "Describir personas y objetos",
+    "Decir la hora y la fecha",
+    "Hablar sobre rutinas diarias",
+    "Hacer y responder preguntas sencillas",
+    "Dar y recibir instrucciones simples",
+    "Hablar sobre gustos y preferencias",
+    "Ubicar objetos en el espacio"
+  ]
+}

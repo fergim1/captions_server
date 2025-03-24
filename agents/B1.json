@@ -1,0 +1,41 @@
+{
+  "level": "B1",
+  "name": "Intermediate",
+  "description": "Usuario independiente. Puede comprender los puntos principales de textos claros, y desenvolverse en situaciones habituales en viajes.",
+  "objectives": [
+    "Comprender las ideas principales de temas cotidianos en textos claros.",
+    "Producir textos sencillos y coherentes.",
+    "Describir experiencias, deseos, y justificar opiniones o planes."
+  ],
+  "grammar": [
+    "Futuro simple y continuo",
+    "Presente perfecto simple y continuo",
+    "Condicional tipo 0, 1 y 2",
+    "Used to (acciones habituales en el pasado)",
+    "Verb patterns (gerundios vs. infinitivos)",
+    "Reported speech (pasado)",
+    "Comparativos y superlativos complejos",
+    "Relative clauses",
+    "Pronombres reflexivos y posesivos",
+    "Artículos definidos, indefinidos y cero artículo",
+    "Adverbios de modo, tiempo y lugar",
+    "Conectores: although, however, therefore, so, because",
+    "So / Such + adjective/noun"
+  ],
+  "vocabulary": [
+    "Medios de comunicación",
+    "Medio ambiente",
+    "Educación",
+    "Trabajo y empleos",
+    "Vida en la ciudad y el campo",
+    "Salud y bienestar"
+  ],
+  "functions": [
+    "Dar consejos y hacer sugerencias",
+    "Expresar condiciones reales e irreales",
+    "Relatar historias y experiencias",
+    "Describir eventos en diferentes tiempos",
+    "Justificar opiniones",
+    "Participar en conversaciones espontáneas"
+  ]
+}
