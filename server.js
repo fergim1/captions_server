@@ -77,7 +77,9 @@ async function subtitlesAndText (videoId) {
 // API route to fetch subtitles
 app.get('/api/transcript', async (req, res) => {
   const { videoId } = req.query;
+  const { englishLevel } = req.query;
   console.log("videoId: ", videoId)
+  console.log("englishLevel: ", englishLevel)
 
   if (!videoId) {
     return res.status(400).json({ error: 'Video ID is required' });
@@ -89,23 +91,19 @@ app.get('/api/transcript', async (req, res) => {
     // const textTranslated = await translateText(totalText, "es")
     const textTranslated = "Descomentar linea 85 si quieres traducir todo el texto con google translate"
 
-    ///////////////////Deepseek
-    const level = "B1"
-
     // 1. Cargar agente del nivel requerido
-    const agent = loadAgent(level);
+    const agent = loadAgent(englishLevel);
 
     // 2. Reemplazar variables en el template
-
     const prompt_template = `
-  Eres un profesor de inglés especializado en nivel {{level}}.
+  Eres un profesor de inglés especializado en nivel {{englishLevel}}.
   A partir del contenido de estos subtitulos: {{totalText}}, debes generar:
   1) Resumen del contenido, minimo 3000 caracteres (summary)
   2) 10 puntos principales (main_points)
   3) 20 preguntas múltiple choice (4 opciones, 1 correcta y las otras opciones incorrectas tienen que ser creibles)
   4) 20 preguntas verdadero/falso (true_false).
   Tanto el resumen, los 10 puntos principales, preguntas multiple choice y las verdadero/falso deben tener
-  el vocabulario adecuado para que el alumno pueda entenderlas segun su nivel de ingles ({{level}}).
+  el vocabulario adecuado para que el alumno pueda entenderlas segun su nivel de ingles ({{englishLevel}}).
   Ademas, para las preguntas se debe indicar el texto donde hace referencia a la respuesta correcta.
 
   **Reglas estrictas para generar el resumen, los puntos principales y las preguntas segun el nivel del alumno:**
@@ -153,10 +151,10 @@ app.get('/api/transcript', async (req, res) => {
   - options debe contener elementos que serán string aproximadamente del mismo tamaño.
   - correct_answer no debe ser siempre el mismo, por lo tanto la respuesta correcta que se encuentra dentro de options, no debe estar siempre en el mismo indice.
   - true_false debe contener 20 elementos.
-  - Todo debe estar en un vocabulario que sea capas de entender el alumno, acorde a su nivel {{level}} de ingles
+  - Todo debe estar en un vocabulario que sea capas de entender el alumno, acorde a su nivel {{englishLevel}} de ingles
  `
     const prompt = prompt_template
-      .replace('{{level}}', level)
+      .replace('{{englishLevel}}', englishLevel)
       .replace('{{totalText}}', totalText)
       .replace('{{description}}', agent.description)
       .replace('{{objectives}}', agent.objectives)
