@@ -171,7 +171,11 @@ app.get('/api/transcript', async (req, res) => {
         messages: [{ role: "user", content: prompt }],
         response_format: { type: "json_object" }
       },
-      { headers: { Authorization: `Bearer ${process.env.DEEPSEEK_API_KEY}` } }
+      {
+        headers: { Authorization: `Bearer ${process.env.DEEPSEEK_API_KEY}` },
+        timeout: 300000  // ⬅️ 5 minutos (en milisegundos)
+      }
+
     );
 
     console.log("Deepseek")
@@ -230,3 +234,6 @@ app.get('/api/google', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on PORT: ${PORT}`);
 });
+
+// Aumentar timeout a 5 minutos (300,000 ms)
+app.timeout = 300000; 
