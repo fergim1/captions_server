@@ -248,7 +248,30 @@ app.get('/api/transcript', async (req, res) => {
     const data = await subtitlesAndText(videoId);
     const { subtitles, totalText, durationOfVideo } = data;
 
+
+      
+          // Guardar totalText en memoria o base de datos
+          cache.set("totalText",  totalText );
     res.json({ subtitles, durationOfVideo }); // Respuesta rápida con subtítulos
+
+
+  } catch (error) {
+    // console.error("Detalles del error:", error.response.data);
+    console.error("Error al obtener los subtitulos:", error);
+  }
+});
+
+
+app.get('/api/transcript/result', async (req, res) => {
+  const { videoId, englishLevel } = req.query;
+  console.log({videoId})
+  console.log({englishLevel})
+  
+  if (!videoId) {
+    return res.status(400).json({ error: 'Video ID is required' });
+  }
+  
+  const totalText = cache.get("totalText"); // Obtener el resultado del caché o base de datos
 
     // Procesar el resto de la información en segundo plano
     const agent = loadAgent(englishLevel);
@@ -319,10 +342,6 @@ app.get('/api/transcript', async (req, res) => {
       .replace('{{grammar}}', agent.grammar.join(', '))
       .replace('{{vocabulary}}', agent.vocabulary.join(', '))
       .replace('{{functions}}', agent.functions.join(', '));
-      
-      console.log("Antes de responder Deepseek")
-      console.log("Prompt generado:", prompt); // Depurar el contenido del prompt
-
 
       const responseDeepseek = await axios.post(
       process.env.DEEPSEEK_URL_API,
@@ -338,47 +357,17 @@ app.get('/api/transcript', async (req, res) => {
     );
     console.log("Respuesta de DeepSeek, responseDeepseek.data:", responseDeepseek.data.choices[0].message.content);
 
-          const deepseekResponse = JSON.parse(responseDeepseek.data.choices[0].message.content);
-          console.log("Respuesta procesada de DeepSeek:", deepseekResponse);
+    const deepseekResponse = JSON.parse(responseDeepseek.data.choices[0].message.content);
+    console.log("Respuesta procesada de DeepSeek:", deepseekResponse);
 
-          const totalTokens = JSON.parse(responseDeepseek.data.usage.total_tokens);
-          console.log({ totalTokens })
+    const totalTokens = JSON.parse(responseDeepseek.data.usage.total_tokens);
+    console.log({ totalTokens })
 
       
-          // Guardar el resultado en memoria o base de datos
-          cache.set(videoId,  deepseekResponse );
 
-  } catch (error) {
-    console.error("Error en la solicitud a DeepSeek:", error.message);
-    // Guardar un estado de error en el caché
-    cache.set(videoId, { error: "Error al procesar la solicitud a DeepSeek" });
-
-    // Registrar más detalles del error
-    if (error.response) {
-      console.error("Detalles del error:", error.response.data);
-    }
-    console.error("ERROR CODE: ", error.code);
-    console.error("ERROR STATUS: ", error.status);
-  }
-});
-
-
-app.get('/api/transcript/result', (req, res) => {
-  const { videoId } = req.query;
-  
-  if (!videoId) {
-    return res.status(400).json({ error: 'Video ID is required' });
-  }
-  
-  console.log("videoId desde /api/transcript/result: ", videoId)
-
-  const result = cache.get(videoId); // Obtener el resultado del caché o base de datos
-  console.log("Result: ")
-  console.log(result)
-
-  if (!result) {
+  if (!deepseekResponse) {
     return res.status(404).json({ error: 'Result not ready yet. Please try again later.' });
   }
 
-  res.json(result);
+  res.json(deepseekResponse);
 });
