@@ -266,36 +266,109 @@ app.get('/api/transcript/result', async (req, res) => {
 });
 
 // Endpoint para generar ejercicios
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+
 app.post('/api/generate-exercises', async (req, res) => {
   const { definitions, translations, englishLevel } = req.body
-  console.log({definitions})
-  console.log({translations})
-  console.log({englishLevel})
-/// 9 de septiembre: Continuar desde aca para integrar Gemini o el que sea
+  // console.log({definitions})
+  // console.log({translations})
+  // console.log({englishLevel})
+  try {
+    const { definitions, translations, englishLevel } = req.body;
 
-//   try {
-//       // Llama a la función que interactúa con Gemini
-//       const exercises = await generateExercises(definitions, translations, englishLevel);
+    // Llama a la función que interactúa con Gemini
+    const exercises = await generateExercises(definitions, translations, englishLevel);
 
-//       res.json({ success: true, exercises });
+    res.json({ success: true, exercises });
+    console.log("exercisesssssssss")
+    console.log(exercises)
 
-//   } catch (error) {
-//       console.error('Error al generar ejercicios:', error);
-//       res.status(500).json({ success: false, error: 'Hubo un error al generar los ejercicios.' });
-//   }
+} catch (error) {
+    console.error('Error al generar ejercicios:', error);
+    res.status(500).json({ success: false, error: 'Hubo un error al generar los ejercicios.' });
+}
 });
 
-// Lógica de la API de Gemini
-async function generateExercises(definitions, translations, userLevel) {
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+// Lógica para llamar a Gemini
+async function generateExercises(definitions, translations, englishLevel) {
+// Selecciona el modelo. gemini-1.5-pro es excelente para esta tarea
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
-  // Aquí construirás el prompt (ver siguiente paso)
-  const prompt = buildPrompt(definitions, translations, userLevel);
+// Aquí construirás el prompt (siguiente paso)
+const prompt = buildPrompt(definitions, translations, englishLevel);
 
-  const result = await model.generateContent(prompt);
-  const response = await result.response;
-  const text = response.text();
+const result = await model.generateContent(prompt);
+const response = await result.response;
+const text = response.text();
+const jsonText = text.replace(/```json\n|```/g, '').trim();
 
-  // Parsear el JSON que esperamos de la respuesta
-  return JSON.parse(text);
+console.log("linea 306 del server")
+console.log(jsonText)
+
+// Parsea el JSON que esperamos de la respuesta
+try {
+    return JSON.parse(jsonText);
+} catch (e) {
+    console.error('Error al parsear la respuesta de Gemini:', e);
+    // Si la respuesta no es un JSON válido, devuelves un error o un array vacío
+    return []; 
+}
+}
+
+// En server.js, después de la función generateExercises
+function buildPrompt(definitions, translations, englishLevel) {
+
+  const formattedData = {
+      words: definitions.map(def => ({
+          word: def.word,
+          translated: def.translated,
+          definitions: def.definitions,
+          phonetic: def.phonetic || 'No phonetic available.',
+          example: def.definitions[0]?.example || 'No example available.'
+      })),
+      sentences: translations.map(trans => ({
+          original: trans.original,
+          translated: trans.translated
+      }))
+  };
+
+  return `
+      Eres un experto profesor de inglés y un creador de juegos educativos. Tu tarea es generar una serie de ejercicios interactivos y divertidos para un estudiante de inglés de nivel ${englishLevel}.
+
+      El estudiante ha guardado las siguientes palabras y oraciones. Debes crear ejercicios que cubran todo el contenido proporcionado. Enfócate en la práctica de vocabulario, uso en contexto, y la comprensión de oraciones.
+
+      Contenido a practicar:
+      \`\`\`json
+      ${JSON.stringify(formattedData, null, 2)}
+      \`\`\`
+
+      Genera los ejercicios en formato JSON. La respuesta debe ser un arreglo de objetos, donde cada objeto representa un ejercicio. El formato de la respuesta debe ser estrictamente el siguiente:
+      \`\`\`json
+      [
+        {
+          "type": "tipo_de_ejercicio",
+          "question": "Texto de la pregunta.",
+          "correctAnswer": "Respuesta correcta",
+          "options": ["Opción 1", "Opción 2", "Opción 3", "Opción 4"]
+        }
+      ]
+      \`\`\`
+      Los ejercicios deben tener siempre una única respuesta correcta dentro del array de opciones.
+
+      Crea los siguientes tipos de ejercicios para que el estudiante aprenda el contenido de una forma divertida y completa. Debes generar suficientes ejercicios para cubrir todo el vocabulario y las oraciones:
+
+      1.  **fill_in_the_blank**: Se muestra una oración con una palabra o frase faltante. El usuario debe elegir la respuesta correcta entre varias opciones. La oración puede ser una de las guardadas o una nueva creada por ti.
+
+      2.  **match_meaning**: Se presenta una palabra y el usuario debe seleccionar la definición o traducción correcta entre varias opciones. Asegúrate de incluir la traducción al español en las opciones para los niveles más bajos.
+
+      3.  **translation_challenge**: Se presenta una oración en inglés o español, y el usuario debe elegir la traducción correcta entre varias opciones.
+
+      4.  **word_scramble**: Se muestran las letras de una palabra en desorden y el usuario debe ordenarlas para formar la palabra correcta. Esto ayuda a practicar la ortografía. Las opciones pueden ser las letras en el orden correcto y otras incorrectas, o simplemente las letras desordenadas y el campo para que el usuario escriba la respuesta y luego la aplicación la valide con la "correctAnswer".
+
+      5.  **synonym_antonym_match**: Se da una palabra y el usuario debe elegir el sinónimo o antónimo correcto de una lista de opciones.
+
+      Asegúrate de que cada ejercicio sea relevante, claro y adaptado al nivel de inglés del usuario. La respuesta debe ser **solo el JSON**, sin ninguna explicación o texto adicional.
+  `;
 }

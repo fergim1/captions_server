@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-     "start:dev": "NODE_ENV=development node server.js",
+    "start:dev": "NODE_ENV=development node server.js",
     "start:prod": "NODE_ENV=production node server.js"
   },
   "keywords": [],
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@google-cloud/translate": "^8.5.0",
+    "@google/generative-ai": "^0.24.1",
     "@googleapis/youtube": "^20.0.0",
     "axios": "^1.7.9",
     "cors": "^2.8.5",
