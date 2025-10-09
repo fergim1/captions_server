@@ -293,8 +293,8 @@ app.post('/api/generate-exercises', async (req, res) => {
 
 // Lógica para llamar a Gemini
 async function generateExercises(definitions, translations, englishLevel) {
-// Selecciona el modelo. gemini-1.5-pro es excelente para esta tarea
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 // Aquí construirás el prompt (siguiente paso)
 const prompt = buildPrompt(definitions, translations, englishLevel);
