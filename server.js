@@ -19,7 +19,7 @@ const axios = require('axios');
 const bodyParser  = require('body-parser');
 
 
-const { getSubtitles } = require("./utils/subtitles")
+const { getSubtitles } = require("./utils/subtitles-ytdlp")
 const { translateText } = require('./utils/translate');
 const { oxford } = require('./utils/oxford');
 const loadAgent = require('./utils/agentLoader');
@@ -159,12 +159,20 @@ app.get('/api/transcript/result', async (req, res) => {
   const { videoId, englishLevel } = req.query;
   console.log({videoId})
   console.log({englishLevel})
-  
+
   if (!videoId) {
     return res.status(400).json({ error: 'Video ID is required' });
   }
-  
-  const totalText = cache.get("totalText"); // Obtener el resultado del caché o base de datos
+
+  try {
+  let totalText = cache.get("totalText");
+
+  if (!totalText) {
+    console.log("totalText not in cache, fetching transcript for videoId:", videoId);
+    const data = await subtitlesAndText(videoId);
+    totalText = data.totalText;
+    cache.set("totalText", totalText);
+  }
 
     // Procesar el resto de la información en segundo plano
     const agent = loadAgent(englishLevel);
@@ -241,14 +249,19 @@ app.get('/api/transcript/result', async (req, res) => {
       {
         model: "deepseek-chat",
         messages: [{ role: "user", content: prompt }],
-        response_format: { type: "json_object" }
+        response_format: { type: "json_object" },
+        max_tokens: 8192
       },
       {
         headers: { Authorization: `Bearer ${process.env.DEEPSEEK_API_KEY}` },
         timeout: 300000
       }
     );
-    console.log("Respuesta de DeepSeek, responseDeepseek.data:", responseDeepseek.data.choices[0].message.content);
+    const finishReason = responseDeepseek.data.choices[0].finish_reason;
+    console.log("DeepSeek finish_reason:", finishReason);
+    if (finishReason === 'length') {
+      console.warn("DeepSeek response was truncated — increase max_tokens or reduce prompt size");
+    }
 
     const deepseekResponse = JSON.parse(responseDeepseek.data.choices[0].message.content);
     console.log("Respuesta procesada de DeepSeek:", deepseekResponse);
@@ -263,6 +276,10 @@ app.get('/api/transcript/result', async (req, res) => {
   }
 
   res.json(deepseekResponse);
+  } catch (error) {
+    console.error("Error in /api/transcript/result:", error.message);
+    res.status(500).json({ error: 'Error processing transcript result.', details: error.message });
+  }
 });
 
 // Endpoint para generar ejercicios
