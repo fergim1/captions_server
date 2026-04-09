@@ -34,13 +34,10 @@ app.use(bodyParser.json({ limit: "10mb" }));
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 
 
-app.use(cors());
-app.use(express.json());
-
 app.use(cors({
   origin: process.env.DOMAIN,
-  AccessControlAllowOrigin: process.env.DOMAIN,
-}))
+}));
+app.use(express.json());
 
 async function subtitlesAndText (videoId) {
   try {
