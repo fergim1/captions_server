@@ -6,6 +6,8 @@ RUN apt-get update && apt-get install -y python3 python3-pip ffmpeg --no-install
 
 WORKDIR /app
 
+ENV NODE_ENV=production
+
 COPY package*.json ./
 RUN npm ci --omit=dev
 
