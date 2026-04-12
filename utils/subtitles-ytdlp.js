@@ -24,9 +24,12 @@ async function getSubtitles({ videoId, language = 'en' }) {
   const outputFile = `${outputTemplate}.${language}.srv1`;
 
   // Intentar primero subtítulos manuales, si no existen usar auto-generados
+  const cookiesPath = path.join(__dirname, '..', 'cookies.txt');
+  const cookiesFlag = fs.existsSync(cookiesPath) ? `--cookies "${cookiesPath}"` : '';
+
   const attempts = [
-    `yt-dlp --write-sub --sub-lang ${language} --sub-format srv1 --skip-download "${url}" -o "${outputTemplate}" 2>&1`,
-    `yt-dlp --write-auto-sub --sub-lang ${language} --sub-format srv1 --skip-download "${url}" -o "${outputTemplate}" 2>&1`,
+    `yt-dlp ${cookiesFlag} --remote-components ejs:github --write-sub --sub-lang ${language} --sub-format srv1 --skip-download "${url}" -o "${outputTemplate}" 2>&1`,
+    `yt-dlp ${cookiesFlag} --remote-components ejs:github --write-auto-sub --sub-lang ${language} --sub-format srv1 --skip-download "${url}" -o "${outputTemplate}" 2>&1`,
   ];
 
   let downloaded = false;
