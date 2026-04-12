@@ -141,7 +141,7 @@ app.get('/api/transcript', async (req, res) => {
 
       
           // Guardar totalText en memoria o base de datos
-          cache.set("totalText",  totalText );
+          cache.set(`totalText_${videoId}`, totalText);
     res.json({ subtitles, durationOfVideo }); // Respuesta rápida con subtítulos
 
 
@@ -162,13 +162,13 @@ app.get('/api/transcript/result', async (req, res) => {
   }
 
   try {
-  let totalText = cache.get("totalText");
+  let totalText = cache.get(`totalText_${videoId}`);
 
   if (!totalText) {
     console.log("totalText not in cache, fetching transcript for videoId:", videoId);
     const data = await subtitlesAndText(videoId);
     totalText = data.totalText;
-    cache.set("totalText", totalText);
+    cache.set(`totalText_${videoId}`, totalText);
   }
 
     // Procesar el resto de la información en segundo plano
